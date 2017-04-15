@@ -44,7 +44,6 @@
                     'password_confirmation': password_confirmation
                }
             };
-            console.log(d)
             
         $.ajax({
             type: "POST",
@@ -55,4 +54,30 @@
             console.log("success", json);
         });
        });
+    
+    // login form action 
+        
+        $("#login").click(function(){
+           var email = $("#email_login").val();
+           var pass = $("#pass_login").val();
+           
+           var d = {
+               'session':{
+                    'email': email,
+                    'password': pass   
+               }
+           };
+           
+           $.ajax({
+               type: "POST",
+               url: "/login",
+               beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+               data: d
+           }).success(function(json){
+               console.log("Success", json);
+           });
+           
+        });
+        
+    
     });
