@@ -9,8 +9,13 @@
   </div>
   <div class="nav-center">
     <div class="block">
-      <a class="button" id="login_col">Log in</a>
-      <a class="button" id="signup_col">Sign up</a>
+      <% if logged_in? %>
+        <%= link_to "Log out", logout_path, method: "delete", class: "button" %>
+        
+      <% else %>
+        <a class="button" id="login_col">Log in</a>
+        <a class="button" id="signup_col">Sign up</a>
+      <% end %>
     </div>
   </div>
 </nav>
