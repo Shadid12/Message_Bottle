@@ -4,6 +4,7 @@
         $("#signup_card").hide();
         $("#login_card").hide();
         
+        
         $("#home").click(function(){
            setTimeout(function(){
                $("#header").slideDown("slow");
@@ -78,6 +79,9 @@
            });
            
         });
+        
+        $("#signup_card").hide();
+        $("#login_card").hide();
         
     
     });

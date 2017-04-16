@@ -5,13 +5,17 @@
 <div class="box">
 <nav class="nav">
   <div class="columns">
-    <div class="column"><a class="button" id="home">Home</a></div>
+    <% if logged_in? %>
+      <div class="column"><a class="button" href="https://new-note-share-shadid121.c9users.io/">Home</a></div>
+    <% else %>
+      <div class="column"><a class="button" id="home">Home</a></div>
+    <% end %>
   </div>
   <div class="nav-center">
     <div class="block">
       <% if logged_in? %>
-        <%= link_to "Log out", logout_path, method: "delete", class: "button" %>
-        
+        <%= link_to "Create Message", new_message_path, class: "button is-primary" %>
+        <%= link_to "Log out", logout_path, method: "delete", class: "button is-primary" %>
       <% else %>
         <a class="button" id="login_col">Log in</a>
         <a class="button" id="signup_col">Sign up</a>

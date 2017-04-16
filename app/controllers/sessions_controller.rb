@@ -6,9 +6,10 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in user
-      redirect_to user
+      redirect_to new_message_path
     else
-      render 'new'
+      ## TODO create a page
+      redirect_to root_path
     end
   end
   
