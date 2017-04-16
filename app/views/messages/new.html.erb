@@ -4,28 +4,39 @@
     <div class="notification">
         <div class="field">
           <p class="control">
-            <textarea class="textarea" placeholder="Write your message"></textarea>
+            <textarea class="textarea" placeholder="Write your message" id="msg_body"></textarea>
           </p>
         </div>
         
         <p class="control">
-            <button class="button is-primary">Submit</button>
+            <button class="button is-primary" id="msg_submit">Submit</button>
         </p>
     </div>
 </div>
 
-
-
-<style>
-
-#msg_box {
-  position: absolute;
-  width: 800px;
-  height: 100px;
-  z-index: 15;
-  top: 30%;
-  left: 52%;
-  margin: -100px 0 0 -150px;
-}
-
-</style>
+<script>
+    $(document).ready(function(){
+    $("#msg_submit").click(function(){
+       
+       var body = $("#msg_body").val();
+       
+       var d = {
+           'message':{
+               'body' : body
+           }
+       };
+       
+       $.ajax({
+          type: "POST",
+          url: "/messages",
+          beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+          data: d
+       }).success(function(json){
+           console.log("success", json);
+       });
+       
+       $("#msg_body").val("");
+       
+    });
+});
+</script>

@@ -82,6 +82,5 @@
         
         $("#signup_card").hide();
         $("#login_card").hide();
-        
     
     });

@@ -14,7 +14,8 @@
   <div class="nav-center">
     <div class="block">
       <% if logged_in? %>
-        <%= link_to "Create Message", new_message_path, class: "button is-primary" %>
+        <%= link_to "Create Message", new_message_path, class: "button is-primary"%>
+        <a class="button is-primary" id="receive_msg">Recieve Message</a>
         <%= link_to "Log out", logout_path, method: "delete", class: "button is-primary" %>
       <% else %>
         <a class="button" id="login_col">Log in</a>
@@ -26,3 +27,18 @@
 </div>
 </div>
 </div>
+
+<script>
+$(document).ready(function(){
+  $("#receive_msg").click(function(){
+           
+    $.ajax({
+      type: "GET",
+      url: "/recieve",
+    }).success(function(json){
+        console.log(json);
+    });
+           
+  });
+});
+</script>

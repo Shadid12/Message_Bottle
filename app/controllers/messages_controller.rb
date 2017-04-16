@@ -60,7 +60,15 @@ class MessagesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def recieve
+    m = Message.where.not(user_id: current_user.id).order('RANDOM()').limit(1)
+    respond_to do |format|
+      format.json { render json: m }
+    end
+  end
+  
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message
