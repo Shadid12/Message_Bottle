@@ -21,6 +21,8 @@
 
 <script>
     $(document).ready(function(){
+    var msg_info;
+    
     $("#msg_collapse").hide();
     $("#msg_created").hide();
     
@@ -40,6 +42,7 @@
           beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
           data: d
       }).success(function(json){
+          msg_info = json;
           $("#msg_created").slideDown().delay(3000).fadeOut();
           console.log("success", json);
       });
@@ -50,11 +53,13 @@
     
     $("#receive_msg").click(function(){
         $('#body_r').empty();
+         $("#thing").val("");
         $.ajax({
           type: "GET",
           url: "/recieve",
         }).success(function(json){
             $("#body_r").append(json[0].body);
+            $("#thing").val(json[0].id);
             $("#meg_txtArea").fadeOut('slow', function(){
                 $("#msg_collapse").slideDown('slow');
             });
@@ -62,7 +67,5 @@
         });
                
     });
-    
-    
 });
 </script>

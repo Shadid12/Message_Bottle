@@ -11,11 +11,20 @@
   </header>
   <div class="card-content">
     <div class="content" id="body_r">
-      
     </div>
+    <input type="hidden" id="thing">
   </div>
-  <footer class="card-footer">
-    <a class="card-footer-item button is-info is-inverted">Save</a>
+  <div class="card-content">
+    <a class="card-footer-item button is-info is-inverted" id="saveA">Save</a>
     <a class="card-footer-item button is-danger is-inverted">Toss Back</a>
-  </footer>
+  </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $("#saveA").click(function(){
+      var id = $("#thing").val();
+      console.log(id);
+    });
+  });
+</script>
