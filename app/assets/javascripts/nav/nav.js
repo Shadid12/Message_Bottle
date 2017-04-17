@@ -82,9 +82,6 @@
     
     // the message collapse
     
-    $("#msg_collapse").hide();
-    
-    
     $(document).ready(function(){
       $("#receive_msg").click(function(){
         $('#body_r').empty();
@@ -92,10 +89,12 @@
           type: "GET",
           url: "/recieve",
         }).success(function(json){
+            
             $("#body_r").append(json[0].body);
             $("#header").fadeOut('slow', function(){
                 $("#msg_collapse").slideDown('slow');
             });
+            
             console.log(json[0]);
         });
                
@@ -106,5 +105,6 @@
     
         $("#signup_card").hide();
         $("#login_card").hide();
+        $("#msg_collapse").hide();
     
     });

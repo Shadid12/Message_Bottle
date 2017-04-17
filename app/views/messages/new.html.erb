@@ -1,5 +1,9 @@
 </br>
 
+<div class="notification is-success" id="msg_created">
+    <span>Message Created :)</span>
+</div>
+
 <div class="container is-fluid" id="meg_txtArea">
     <div class="notification">
         <div class="field">
@@ -17,26 +21,30 @@
 
 <script>
     $(document).ready(function(){
+    $("#msg_collapse").hide();
+    $("#msg_created").hide();
+    
     $("#msg_submit").click(function(){
        
-       var body = $("#msg_body").val();
+      var body = $("#msg_body").val();
        
-       var d = {
-           'message':{
-               'body' : body
-           }
-       };
+      var d = {
+          'message':{
+              'body' : body
+          }
+      };
        
-       $.ajax({
+      $.ajax({
           type: "POST",
           url: "/messages",
           beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
           data: d
-       }).success(function(json){
-           console.log("success", json);
-       });
+      }).success(function(json){
+          $("#msg_created").slideDown().delay(3000).fadeOut();
+          console.log("success", json);
+      });
        
-       $("#msg_body").val("");
+      $("#msg_body").val("");
        
     });
     
