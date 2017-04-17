@@ -1,6 +1,6 @@
 </br>
 
-<div class="container is-fluid">
+<div class="container is-fluid" id="meg_txtArea">
     <div class="notification">
         <div class="field">
           <p class="control">
@@ -13,6 +13,7 @@
         </p>
     </div>
 </div>
+<%= render 'partials/recieve' %>
 
 <script>
     $(document).ready(function(){
@@ -38,5 +39,22 @@
        $("#msg_body").val("");
        
     });
+    
+    $("#receive_msg").click(function(){
+        $('#body_r').empty();
+        $.ajax({
+          type: "GET",
+          url: "/recieve",
+        }).success(function(json){
+            $("#body_r").append(json[0].body);
+            $("#meg_txtArea").fadeOut('slow', function(){
+                $("#msg_collapse").slideDown('slow');
+            });
+            console.log(json[0]);
+        });
+               
+    });
+    
+    
 });
 </script>
