@@ -91,16 +91,15 @@
         }).success(function(json){
             
             $("#body_r").append(json[0].body);
+            $("#thing").val(json[0].id);
             $("#header").fadeOut('slow', function(){
                 $("#msg_collapse").slideDown('slow');
             });
-            
             console.log(json[0]);
         });
                
       });
     });
-    
     
     
         $("#signup_card").hide();

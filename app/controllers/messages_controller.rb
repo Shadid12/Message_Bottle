@@ -49,6 +49,13 @@ class MessagesController < ApplicationController
       end
     end
   end
+  
+  def save
+    m = Message.find(params[:id])
+    respond_to do |f|
+      f.json {render json: m}
+    end
+  end
 
   # DELETE /messages/1
   # DELETE /messages/1.json

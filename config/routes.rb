@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   get   '/recieve', to: 'messages#recieve'
+  post '/save', to: 'messages#save'
   
   resources :users
   root "static#home"

@@ -24,7 +24,17 @@
   $(document).ready(function(){
     $("#saveA").click(function(){
       var id = $("#thing").val();
-      console.log(id);
-    });
+      d = {
+        'id': id
+      }
+      $.ajax({
+          type: "POST",
+          url: "/save",
+          beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+          data: d
+      }).success(function(json){
+         console.log("success", json);
+      });
+    });  
   });
 </script>
