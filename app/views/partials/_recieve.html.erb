@@ -20,8 +20,17 @@
   </div>
 </div>
 
+<div class="box" id="saved">
+  <article class="message is-primary">
+    <div class="message-body">
+      Message Saved !!
+    </div>
+  </article>
+</div>
+
 <script>
   $(document).ready(function(){
+    $("#saved").hide()
     $("#saveA").click(function(){
       var id = $("#thing").val();
       d = {
@@ -33,7 +42,9 @@
           beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
           data: d
       }).success(function(json){
-         console.log("success", json);
+         $("#msg_collapse").fadeOut("slow", function(){
+           $("#saved").slideDown("slow").delay(3000).fadeOut();
+         });
       });
     });  
   });

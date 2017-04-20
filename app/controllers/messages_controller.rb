@@ -52,6 +52,9 @@ class MessagesController < ApplicationController
   
   def save
     m = Message.find(params[:id])
+    bottle = current_user.bottles.new(body: m.body, creator_id: m.user_id)
+    bottle.save
+    m.destroy
     respond_to do |f|
       f.json {render json: m}
     end
