@@ -3,6 +3,7 @@ class StaticController < ApplicationController
     end
     
     def getmessages
+        @bottles = current_user.bottles
     end
     
 end

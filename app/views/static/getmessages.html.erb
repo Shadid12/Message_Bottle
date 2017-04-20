@@ -1,13 +1,33 @@
 <div class="container is-fluid">
   <br></br>
   <%= render 'partials/header' %>
-  <%= render 'partials/signup' %>
-  <%= render 'partials/login' %>
   <%= render 'partials/recieve' %>
 </div>
 
-<script type='text/javascript'>
+<div class="container is-fluid">
+<div class="box">
+  <% @bottles.each do |bottle| %>
+       <div class="columns is-desktop">
+         <div class="column is-10">
+           <div class="notification">
+             <%= bottle.body %>
+           </div>
+         </div>
+         <div class="column">
+           <a>PM sender</a>
+         </div>
+       </div>
+  <%end %>
+</div>
+</div>
 
+<script type='text/javascript'>
+$(document).ready(function(){
+  $("#header").hide();
+});
+</script>
+
+<script>
 (function()
 {
   if( window.localStorage )
@@ -21,5 +41,4 @@
       localStorage.removeItem('firstLoad');
   }
 })();
-
 </script>
