@@ -1,0 +1,25 @@
+<div class="container is-fluid">
+  <br></br>
+  <%= render 'partials/header' %>
+  <%= render 'partials/signup' %>
+  <%= render 'partials/login' %>
+  <%= render 'partials/recieve' %>
+</div>
+
+<script type='text/javascript'>
+
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+      localStorage['firstLoad'] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem('firstLoad');
+  }
+})();
+
+</script>

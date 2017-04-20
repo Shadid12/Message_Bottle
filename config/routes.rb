@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   get   '/recieve', to: 'messages#recieve'
   post '/save', to: 'messages#save'
+  get '/getmessages', to: 'static#getmessages'
   
   resources :users
   root "static#home"

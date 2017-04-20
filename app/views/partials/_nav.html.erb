@@ -16,6 +16,7 @@
       <% if logged_in? %>
         <%= link_to "Create Message", new_message_path, class: "button is-primary"%>
         <a class="button is-primary" id="receive_msg">Recieve Message</a>
+        <%= link_to "Saved Messages", getmessages_path, class: "button is-primary"%>
         <%= link_to "Log out", logout_path, method: "delete", class: "button is-primary" %>
       <% else %>
         <a class="button" id="login_col">Log in</a>
