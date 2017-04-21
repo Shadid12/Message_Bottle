@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get   '/recieve', to: 'messages#recieve'
   post '/save', to: 'messages#save'
   get '/getmessages', to: 'static#getmessages'
+  post '/conversation', to: 'conversation#create'
   
   resources :users
   root "static#home"
