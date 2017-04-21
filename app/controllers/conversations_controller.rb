@@ -7,6 +7,7 @@ class ConversationsController < ApplicationController
             # if its still true then create a new conversation
             if @conversation
                 @conversation = Conversation.new(bid: params[:id], aid: current_user.id)
+                @conversation.save
                 respond_to do |f|
                     f.json {render json: @conversation}
                 end

@@ -5,7 +5,7 @@
 </div>
 
 <div class="container is-fluid">
-<div class="box">
+<div class="box" id="cor">
   <% @bottles.each do |bottle| %>
        <div class="columns is-desktop">
          <div class="column is-10">
@@ -19,17 +19,50 @@
        </div>
   <%end %>
 </div>
+
+<div class="field" id="cmsg">
+  <label class="label">Write Message</label>
+  <p class="control">
+    <textarea class="textarea" placeholder="Textarea"></textarea>
+  </p>
+  <br></br>
+  <div>
+    <a class="button is-success" id="postC">Send</a>
+    <a class="button is-warning" href="/getmessages">Cancel</a>
+  </div>
+</div>
+
 </div>
 
 <script type='text/javascript'>
   function my_func(x){
-    console.log(x);
+    $(document).ready(function(){
+      $("#cor").fadeOut("slow", "swing", function(){
+        $("#cmsg").slideDown("fast");
+      });
+      
+      $("#postC").click(function(){
+        // create ajax call
+        d  = {
+          'id' :  x
+        }
+        $.ajax({
+          type: "post",
+          url: "/conversation",
+          beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+          data: d
+        }).success(function(json){
+          console.log(json);
+        });
+      })
+    })
   }
 </script>
 
 <script type='text/javascript'>
 $(document).ready(function(){
   $("#header").hide();
+  $("#cmsg").hide();
 });
 </script>
 
