@@ -1,0 +1,2 @@
+class PmsController < ApplicationController
+end

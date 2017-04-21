@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/save', to: 'messages#save'
   get '/getmessages', to: 'static#getmessages'
   post '/conversation', to: 'conversations#create'
+  get  '/conversations',   to: 'conversation#index'
   
   resources :users
   root "static#home"

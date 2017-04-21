@@ -5,6 +5,8 @@
 </div>
 
 <div class="container is-fluid">
+<%= render 'partials/emptymsg' %>
+
 <div class="box" id="cor">
   <% @bottles.each do |bottle| %>
        <div class="columns is-desktop">
@@ -23,7 +25,7 @@
 <div class="field" id="cmsg">
   <label class="label">Write Message</label>
   <p class="control">
-    <textarea class="textarea" placeholder="Textarea"></textarea>
+    <textarea class="textarea" placeholder="write msg" id="msgtext"></textarea>
   </p>
   <br></br>
   <div>
@@ -42,25 +44,33 @@
       });
       
       $("#postC").click(function(){
-        // create ajax call
-        d  = {
-          'id' :  x
+        var msg = $("#msgtext").val();
+        if(msg == ""){
+            $("#err").slideDown("slow").delay(3000).fadeOut("slow");
+        }else{
+            // create ajax call
+            d  = {
+              'id' :  x,
+              'message': msg
+            }
+            $.ajax({
+              type: "post",
+              url: "/conversation",
+              beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+              data: d
+            }).success(function(json){
+              console.log(json);
+            });
+            $("#msgtext").val("");
         }
-        $.ajax({
-          type: "post",
-          url: "/conversation",
-          beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-          data: d
-        }).success(function(json){
-          console.log(json);
-        });
-      })
+      });
     })
   }
 </script>
 
 <script type='text/javascript'>
 $(document).ready(function(){
+  $("#err").hide();
   $("#header").hide();
   $("#cmsg").hide();
 });

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420045519) do
+ActiveRecord::Schema.define(version: 20170421055532) do
 
   create_table "bottles", force: :cascade do |t|
     t.integer  "creator_id"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20170420045519) do
     t.text     "body"
     t.integer  "reciever_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "pms", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "sender_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["conversation_id"], name: "index_pms_on_conversation_id"
   end
 
   create_table "users", force: :cascade do |t|
