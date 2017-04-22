@@ -24,7 +24,7 @@ class ConversationsController < ApplicationController
             @conversation = Conversation.where(aid: current_user.id, bid: params[:id])
             create_msg
             respond_to do |f|
-                f.json {render json: @conversation}
+                f.json {render json: "success"}
             end
         end
     end

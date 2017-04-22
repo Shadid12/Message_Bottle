@@ -16,7 +16,7 @@
   </div>
   <div class="card-content">
     <a class="card-footer-item button is-info is-inverted" id="saveA">Save</a>
-    <a class="card-footer-item button is-danger is-inverted">Toss Back</a>
+    <a class="card-footer-item button is-danger is-inverted" id="toss">Toss Back</a>
   </div>
 </div>
 
@@ -46,6 +46,10 @@
            $("#saved").slideDown("slow").delay(3000).fadeOut();
          });
       });
-    });  
+    });
+    
+    $("#toss").click(function(){
+      $("#msg_collapse").fadeOut("slow");
+    });
   });
 </script>

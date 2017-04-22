@@ -7,6 +7,14 @@
 <div class="container is-fluid">
 <%= render 'partials/emptymsg' %>
 
+<divclass="container is-fluid" id="aSucccess">
+  <article class="message is-success">
+    <div class="message-body">
+      Message sent
+    </div>
+  </article>
+</div>
+
 <div class="box" id="cor">
   <% @bottles.each do |bottle| %>
        <div class="columns is-desktop">
@@ -59,6 +67,7 @@
               beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
               data: d
             }).success(function(json){
+              $("#aSucccess").fadeIn("slow").delay(3000).fadeOut("slow");
               console.log(json);
             });
             $("#msgtext").val("");
@@ -70,6 +79,7 @@
 
 <script type='text/javascript'>
 $(document).ready(function(){
+  $("#aSucccess").hide();
   $("#err").hide();
   $("#header").hide();
   $("#cmsg").hide();
