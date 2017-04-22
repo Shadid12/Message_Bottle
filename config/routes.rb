@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   post '/save', to: 'messages#save'
   get '/getmessages', to: 'static#getmessages'
   post '/conversation', to: 'conversations#create'
-  get  '/conversations',   to: 'conversation#index'
+  get  '/conversations',   to: 'conversations#index'
+  get '/pms', to: 'conversations#pms'
+  get  '/conversations/show',   to: 'conversations#show'
+  # post a pm
+  post '/pm', to: 'pms#create'
   
   resources :users
   root "static#home"

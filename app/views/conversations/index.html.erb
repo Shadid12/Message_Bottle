@@ -1,0 +1,78 @@
+<div class="box" id="convos">
+    <% @conversations.each do |c| %>
+        <% if c.aid == current_user.id %>
+            <% u = User.find(c.bid) %>
+            <div><%= u.name %> || <a onclick="pm_function(<%= c.id %>, <%= u.id %>, '<%= u.name %>' )">show</a></div>
+        <% else %>
+            <% u = User.find(c.aid) %>
+            <div><%= u.name %> || <a onclick="pm_function(<%= c.id %>)">show</a> </div>
+        <% end %>
+    <% end %>
+</div>
+
+<%= render 'partials/pm' %>
+
+<script>
+    $(document).ready(function(){
+        $("#showA").hide();
+        $("#backB").click(function(){
+            $("#showA").fadeOut("slow", function(){
+               $("#convos").fadeIn("slow"); 
+            });
+        });
+    })
+</script>
+
+<script>
+    function pm_function(x, sid, name){
+        $(document).ready(function(){
+           d = {
+               'id': x
+           }
+           $.ajax({
+               type: "get",
+               url: "/pms",
+               data: d
+           }).success(function(json){
+              $("#convos").fadeOut("slow", function(){
+                  
+                  for (var i = 0; i< json.length; i ++){
+                      if (json[i].sender_id == sid ){
+                           $("#msgAppend").append("<p><strong>"+ name +": </strong>" + json[i].body + "</p>");   
+                      }else{
+                           $("#msgAppend").append("<p><strong>you: </strong>" + json[i].body + "</p>");
+                      }
+                  }
+                  $("#showA").fadeIn();
+                  
+              })
+           });
+           
+
+            $("#sendMsg").click(function(){
+               var t = $("#txt").val();
+               if(t == ""){
+                   console.log("err");
+               }else{
+                   d = {
+                       'id': x,
+                       'body': t
+                   }
+                   $.ajax({
+                       type: "post",
+                       url: "/pm",
+                       data: d
+                   }).success(function(){
+                       $("#msgAppend").append("<p><strong>you: </strong>" + t + "</p>");
+                       $("#txt").val("");
+                       t = "";
+                   });
+               }
+            });
+
+
+           
+           
+        });
+    }
+</script>

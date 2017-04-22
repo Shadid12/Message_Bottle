@@ -39,4 +39,16 @@ class ConversationsController < ApplicationController
         b = Conversation.where(bid: current_user.id)
         @conversations = a + b
     end
+    
+    def pms
+        c = Conversation.find(params[:id])
+        pms = c.pms
+        respond_to do |f|
+            f.json {render json: pms}
+        end
+    end
+    
+    def show
+    end
+    
 end
