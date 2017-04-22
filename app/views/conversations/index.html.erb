@@ -11,6 +11,7 @@
 </div>
 
 <%= render 'partials/pm' %>
+<%= render 'partials/recieve' %>
 
 <script>
     $(document).ready(function(){
@@ -20,7 +21,12 @@
                $("#convos").fadeIn("slow"); 
             });
         });
-    })
+        $("#receive_msg").click(function(){
+          $("#convos").fadeOut("slow", function(){
+             $("#msg_collapse").slideDown("slow"); 
+          });
+        });
+    });
 </script>
 
 <script>
@@ -69,10 +75,26 @@
                    });
                }
             });
-
-
            
            
         });
     }
+</script>
+
+<script type='text/javascript'>
+
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem('firstLoad') )
+    {
+      localStorage['firstLoad'] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem('firstLoad');
+  }
+})();
+
 </script>
