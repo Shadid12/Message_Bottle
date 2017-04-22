@@ -8,3 +8,9 @@ How about if there was some kind of digital service like this. People can put th
 Once you decide to keep that message, it's yours, nobody else can receive/see it. You can find out more about the person who sent out the "bottle" and decide if you want to send back a message (or not).
 
 # 
+
+
+#### Known Bugs
+###### Fix the Sign Up valiation error message:
+    The signup doesn't show a error message when invalid email is provided. The Backend validation is working. Needs to add frontend 
+    error messages.

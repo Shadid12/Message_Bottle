@@ -40,7 +40,7 @@
                       if (json[i].sender_id == sid ){
                            $("#msgAppend").append("<p><strong>"+ name +": </strong>" + json[i].body + "</p>");   
                       }else{
-                           $("#msgAppend").append("<p><strong>you: </strong>" + json[i].body + "</p>");
+                           $("#msgAppend").append("<p><strong>"+ current_user.name +": </strong>" + json[i].body + "</p>");
                       }
                   }
                   $("#showA").fadeIn();
@@ -63,7 +63,7 @@
                        url: "/pm",
                        data: d
                    }).success(function(){
-                       $("#msgAppend").append("<p><strong>you: </strong>" + t + "</p>");
+                       $("#msgAppend").append("<p><strong>"+ current_user.name +": </strong>" + json[i].body + "</p>");
                        $("#txt").val("");
                        t = "";
                    });
