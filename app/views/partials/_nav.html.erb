@@ -6,7 +6,7 @@
 <nav class="nav">
   <div class="columns">
     <% if logged_in? %>
-      <div class="column"><a class="button" href="https://new-note-share-shadid121.c9users.io/">Home</a></div>
+      <div class="column"><%= link_to "Home", root_path, class: "button"%></div>
     <% else %>
       <div class="column"><a class="button" id="home">Home</a></div>
     <% end %>
